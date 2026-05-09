@@ -398,6 +398,9 @@ const std::vector<ggml_type> kv_cache_types = {
     GGML_TYPE_IQ4_NL,
     GGML_TYPE_Q5_0,
     GGML_TYPE_Q5_1,
+    GGML_TYPE_TURBO2_0,
+    GGML_TYPE_TURBO3_0,
+    GGML_TYPE_TURBO4_0,
 };
 
 static ggml_type kv_cache_type_from_str(const std::string & s) {
@@ -4076,6 +4079,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         string_format("enable default speculative decoding config"),
         [](common_params & params) {
             params.speculative.type = COMMON_SPECULATIVE_TYPE_NGRAM_MOD;
+
             params.speculative.ngram_mod.n_match = 24;
             params.speculative.ngram_mod.n_min = 48;
             params.speculative.ngram_mod.n_max = 64;
